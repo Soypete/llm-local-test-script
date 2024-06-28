@@ -1,4 +1,4 @@
-package main
+package llamacpp
 
 import (
 	"strings"
@@ -15,28 +15,28 @@ func TestClient_createExecCmd(t *testing.T) {
 		{
 			name: "all flags",
 			client: &Client{
-				BinPath: "../llama.cpp/main",
+				BinPath:   "../llama.cpp/main",
+				ModelPath: "../llama.cpp/models/mistral/mistral_7b_v1.gguf",
 			},
 			args: Args{
-				modelPath:  "../llama.cpp/models/mistral/mistral_7b_v1.gguf",
-				prompt:     "between little ceasers, mountain mikes, and papa murphy's where should I get my pizza tonight?",
-				n:          400,
-				e:          true,
-				logDisable: true,
+				Prompt:     "between little ceasers, mountain mikes, and papa murphy's where should I get my pizza tonight?",
+				N:          400,
+				E:          true,
+				LogDisable: true,
 			},
 			want: "-m ../llama.cpp/models/mistral/mistral_7b_v1.gguf -p \"between little ceasers, mountain mikes, and papa murphy's where should I get my pizza tonight?\" -n 400 -e --log-disable",
 		},
 		{
 			name: "min flags",
 			client: &Client{
-				BinPath: "../ml/llama.cpp/main",
+				BinPath:   "../ml/llama.cpp/main",
+				ModelPath: "models/mistral/mistral_7b_v1.gguf",
 			},
 			args: Args{
-				modelPath:  "models/mistral/mistral_7b_v1.gguf",
-				prompt:     "between little ceasers, mountain mikes, and papa murphy's where should I get my pizza tonight?",
-				n:          100,
-				e:          false,
-				logDisable: false,
+				Prompt:     "between little ceasers, mountain mikes, and papa murphy's where should I get my pizza tonight?",
+				N:          100,
+				E:          false,
+				LogDisable: false,
 			},
 			want: "-m models/mistral/mistral_7b_v1.gguf -p \"between little ceasers, mountain mikes, and papa murphy's where should I get my pizza tonight?\" -n 100",
 		},
